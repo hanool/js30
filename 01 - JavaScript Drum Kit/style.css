@@ -24,9 +24,10 @@ html {
   border-radius: 0.5rem;
   margin: 1rem;
   font-size: 1.5rem;
-  padding: 1rem 0.5rem;
+  padding: 1rem 1rem;
   transition: all 0.07s ease;
-  width: 10rem;
+  width: 20rem;
+  height: 20rem;
   text-align: center;
   color: white;
   background: rgba(0, 0, 0, 0.4);
@@ -41,7 +42,15 @@ html {
 
 kbd {
   display: block;
-  font-size: 4rem;
+  font-size: 8rem;
+  pointer-events: none;
+  user-select: none;
+}
+
+.key span {
+  font-size: 3rem;
+  pointer-events: none;
+  user-select: none;
 }
 
 .sound {
