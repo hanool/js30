@@ -1,28 +1,50 @@
-document.querySelectorAll("audio").forEach((audio) => {
-  audio.volume = 0.1;
-});
-
-window.addEventListener("keydown", (e) => {
-  const keyElem = getKeyElem(e.code);
+function playSound(pressedKey) {
+  const keyElem = getKeyElem(pressedKey);
   if (keyElem) {
     keyElem.classList.add("playing");
   }
-  const sound = getAudio(e.code);
+  const sound = getAudio(pressedKey);
   if (sound) {
     sound.play();
   }
-});
+}
 
-window.addEventListener("keyup", (e) => {
-  const keyElem = getKeyElem(e.code);
+function pauseSound(pressedKey) {
+  const keyElem = getKeyElem(pressedKey);
   if (keyElem) {
     keyElem.classList.remove("playing");
   }
-  const sound = getAudio(e.code);
+  const sound = getAudio(pressedKey);
   if (sound) {
     sound.pause();
     sound.currentTime = 0;
   }
+}
+
+function handleKeyDown(e) {
+  playSound(e.code);
+}
+
+function handleKeyUp(e) {
+  pauseSound(e.code);
+}
+
+function handleMouseDown(e) {
+  const pressedKey = e.target.getAttribute("data-key");
+  playSound(pressedKey);
+}
+
+function handleMouseUp(e) {
+  const pressedKey = e.target.getAttribute("data-key");
+  pauseSound(pressedKey);
+}
+
+window.addEventListener("keydown", handleKeyDown);
+window.addEventListener("keyup", handleKeyUp);
+
+document.querySelectorAll(`div[data-key]`).forEach((keyElem) => {
+  keyElem.addEventListener("mousedown", handleMouseDown);
+  keyElem.addEventListener("mouseup", handleMouseUp);
 });
 
 /**
