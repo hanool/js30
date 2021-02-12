@@ -45,6 +45,8 @@ window.addEventListener("keyup", handleKeyUp);
 document.querySelectorAll(`div[data-key]`).forEach((keyElem) => {
   keyElem.addEventListener("mousedown", handleMouseDown);
   keyElem.addEventListener("mouseup", handleMouseUp);
+  keyElem.addEventListener("touchstart", handleMouseDown);
+  keyElem.addEventListener("touchend", handleMouseUp);
 });
 
 /**
